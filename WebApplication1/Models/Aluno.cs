@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Security.Principal;
 using System.Web;
-using Microsoft.Ajax.Utilities;
 
 namespace WebApplication1.Models
 {
@@ -11,7 +8,7 @@ namespace WebApplication1.Models
     {
         public string Nome { get; set; }
         public string RA { get; set; }
-        public string dataNasc { get; set; }
+        public string DataNasc { get; set; }
 
 
         public static void GerarLista(HttpSessionStateBase session)
@@ -25,9 +22,9 @@ namespace WebApplication1.Models
             }
 
             var lista = new List<Aluno>();
-            lista.Add(new Aluno { Nome = "Paulo", RA = "333",dataNasc = "2020-04-08" });
-            lista.Add(new Aluno { Nome = "João", RA = "222",dataNasc = "2016-04-08" });
-            lista.Add(new Aluno { Nome = "Adalberto", RA = "111",dataNasc= "1998-04-08" });
+            lista.Add(new Aluno { Nome = "Paulo", RA = "333", DataNasc = "2020-04-08" });
+            lista.Add(new Aluno { Nome = "João", RA = "222", DataNasc = "2016-04-08" });
+            lista.Add(new Aluno { Nome = "Adalberto", RA = "111", DataNasc= "1998-04-08" });
 
             session.Remove("ListaAluno");
             session.Add("ListaAluno", lista);
@@ -62,7 +59,7 @@ namespace WebApplication1.Models
                 var aluno = Aluno.Procurar(session, id);
                 aluno.Nome = this.Nome;
                 aluno.RA = this.RA;
-                aluno.dataNasc = this.dataNasc;
+                aluno.DataNasc = this.DataNasc;
             }
         }
         

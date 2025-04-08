@@ -13,7 +13,7 @@
             @Html.DisplayNameFor(model => model.RA)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.dataNasc)
+            @Html.DisplayNameFor(model => model.DataNasc)
         </th>
         <th></th>
     </tr>
@@ -27,7 +27,7 @@
         @Html.DisplayFor(modelItem => item.RA)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.dataNasc)
+        @Html.DisplayFor(modelItem => item.DataNasc)
     </td>
     <td>
         @Html.ActionLink("🖊 Editar", "Edit", new { id = Model.ToList<WebApplication1.Models.Aluno>().IndexOf(item) })

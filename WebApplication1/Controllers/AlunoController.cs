@@ -108,7 +108,7 @@ namespace WebApplication1.Controllers
                     var aluno = alunos[i];
                     table.AddCell(aluno.RA);
                     table.AddCell(aluno.Nome);
-                    table.AddCell(aluno.dataNasc.ToString());
+                    table.AddCell(aluno.DataNasc.ToString());
                 }
 
                 doc.Add(table);
