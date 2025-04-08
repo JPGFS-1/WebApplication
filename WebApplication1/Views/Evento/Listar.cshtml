@@ -1,0 +1,39 @@
+﻿@model IEnumerable<WebApplication1.Models.Evento>
+
+@{
+    ViewBag.Title = "Lista Eventos";
+}
+
+<h2>Listar</h2>
+
+<p>
+    @Html.ActionLink("Cadastrar novo Evento", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table table-hover table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Local)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Data)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Local)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Data)
+        </td>
+        <td>
+            @Html.ActionLink("🖊 Editar", "Edit", new { id = Model.ToList<WebApplication1.Models.Evento>().IndexOf(item) })
+            @Html.ActionLink("👁 Exibir", "Exibir", new { id = Model.ToList<WebApplication1.Models.Evento>().IndexOf(item) })
+            @Html.ActionLink("🗑 Apagar", "Delete", new { id = Model.ToList<WebApplication1.Models.Evento>().IndexOf(item) })
+        </td>
+    </tr>
+}
+
+</table>

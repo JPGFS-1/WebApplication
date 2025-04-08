@@ -1,0 +1,40 @@
+﻿@model IEnumerable<WebApplication1.Models.Aluno>
+
+<p>
+    @Html.ActionLink("Cadastrar novo Aluno", "Create", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("PDF", "GerarPDF", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table table-hover table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dataNasc)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nome)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.RA)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.dataNasc)
+    </td>
+    <td>
+        @Html.ActionLink("🖊 Editar", "Edit", new { id = Model.ToList<WebApplication1.Models.Aluno>().IndexOf(item) })
+        @Html.ActionLink("👁 Exibir", "Exibir", new { id = Model.ToList<WebApplication1.Models.Aluno>().IndexOf(item) })
+        @Html.ActionLink("🗑 Apagar", "Delete", new { id = Model.ToList<WebApplication1.Models.Aluno>().IndexOf(item) })
+    </td>
+</tr>
+}
+
+</table>
