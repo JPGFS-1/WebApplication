@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
@@ -64,6 +67,51 @@ namespace WebApplication1.Controllers
             evento.Editar(Session, id);
 
             return RedirectToAction("Listar");
+        }
+        public ActionResult GerarPDF()
+        {
+            var eventos = Session["ListaEvento"] as List<Evento>; // Pega a lista de eventos
+
+            if (eventos == null || eventos.Count == 0)
+            {
+                return RedirectToAction("Listar");
+            }
+
+            // Isso ^^^ é pra garantir que tenha algo a por dentro do PDF
+
+            using (MemoryStream ms = new MemoryStream()) // Memória temporaria para armazenar o PDF ( Eu acho :P )
+            {
+                Document doc = new Document(PageSize.A4, 25, 25, 30, 30); // Tá obvio o que faz, pel'amor
+                PdfWriter writer = PdfWriter.GetInstance(doc, ms); // Inicia a escrita do PDF, é enviado os dados para memória
+                doc.Open(); // Vou falar nada
+
+                // Título
+                var titulo = new Paragraph("Lista de Eventos\n\n", FontFactory.GetFont("Arial", 16, Font.BOLD));
+                titulo.Alignment = Element.ALIGN_CENTER;
+                doc.Add(titulo);
+
+                // Tabela
+                PdfPTable table = new PdfPTable(2);
+                table.WidthPercentage = 100;
+
+                // Cabeçalho
+                table.AddCell("Local");
+                table.AddCell("Data");
+
+                // Linhas
+                for (int i = 0; i < eventos.Count; i++)
+                {
+                    var evento = eventos[i];
+                    table.AddCell(evento.Local);
+                    table.AddCell(evento.Data.ToString());
+                }
+
+                doc.Add(table);
+                doc.Close();
+
+                byte[] bytes = ms.ToArray(); // Converte o conteúdo da memória em um array de bytes ( Suponho eu :P )
+                return File(bytes, "application/pdf", "ListaEventos.pdf"); // Leva o PDF para o navegador, depois é só alegria :D
+            }
         }
     }
 }

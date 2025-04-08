@@ -22,7 +22,7 @@ namespace WebApplication1.Models
             }
 
             var lista = new List<Carro>();
-            lista.Add(new Carro { Placa = "Fusca-1211", Ano = 1990,Cor="Azul" });
+            lista.Add(new Carro { Placa = "Fusca-1211", Ano = 1990, Cor = "Azul" });
             lista.Add(new Carro { Placa = "Van-3232", Ano = 1995, Cor = "Cinza" });
             lista.Add(new Carro { Placa = "Kombi-9999", Ano = 2012, Cor = "Azul" });
 
